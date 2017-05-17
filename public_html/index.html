@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Router planner</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <style>       
+            body { background-color: ivory; }
+            canvas {border:2px solid green;}	
+            #startRoute {
+                color: blue;
+            }
+            #endRoute {
+                color: green;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <div class="container">
+
+            <h2>JSON Route-planner</h2>
+
+            <p>Select een route:
+                <select id="route" onchange="LoadDamHva()">
+                    <option value="">...selecteren...</option>
+                    <option value="Amsterdam Dam">Van Dam naar HVA</option>
+                    <option value="Hogeschool van Amsterdam">Van HVA naar DAM</option>
+                    <option value="XXX3">Van Overtoom naar HVA</option>
+                </select></p>
+
+            <div id="routeoutput"></div>
+
+            <p>Route vanaf <label id="startRoute"></label> naar <label id="endRoute"></label></p>
+            <p>Afstand: <span id="distand"> XXXX </span> meter</p>
+
+
+            <img id="kaart" alt="image" src="" style="width:700px; display: none;"/>
+            <canvas id="myCanvas" width="700" height="535"></canvas>
+
+            <p id="demo"></p>
+            <p id="dam">Details of map will be listed here</p>
+
+
+            <script>
+
+                var theRoute = '{"start":"Hogeschool van Amsterdam", "end": "Amsterdam Dam", "mapImageURL" : "http://www.vandervaartenomstreken.nl/Genealogie/Steden/foto\'s%20steden/amsterdam%20kaart.jpg", "imageWidth": 1000, "imageHeight" : 843, "scale" : 4.0, "route": [ [100,100], [837,563], [663,433], [590,438],[589,427], [577,424],[565,417],[432,438], [404,445]]}';
+                var routeObject = JSON.parse(theRoute);
+
+                document.getElementById("startRoute").innerHTML = routeObject.start;
+                document.getElementById("endRoute").innerHTML = routeObject.end;
+                document.getElementById("distand").innerHTML = routeObject.scale;
+                document.getElementById("kaart").src = routeObject.mapImageURL;
+
+                var canvas = document.getElementById("myCanvas");
+                var ctx = canvas.getContext("2d");
+                var image = document.getElementById("kaart");
+
+                image.onload = function () {
+                    ctx.drawImage(image, 0, 0, 700, 700);
+                    ctx.beginPath();
+                    ctx.lineTo(100, 10);
+                    drawRoute();
+                    ctx.stroke();
+                };
+
+
+                function drawRoute() {
+
+                    for (var i = 0; i < routeObject.route.length; i++) {
+                        longPixel = routeObject.route[i][0];
+                        latPixel = routeObject.route[i][1];
+                        ctx.lineTo(longPixel, latPixel);
+
+                    };
+
+                };
+
+
+
+
+//var xhttp = new XMLHttpRequest();
+//xhttp.onreadystatechange = function() {
+//                if (this.readyState === 4 && this.status === 200) {
+//                    document.getElementById("route").innerHTML = JSON.stringify(this.responseText);
+//                }
+//            };
+//
+//xhttp.open("GET", hvadam.json, true);
+//xhttp.onload = function() {
+//	var oudData = ourRequest.responseText;
+//};
+//xhttp.send();
+//
+//function LoadDamHva() {
+//	
+//    xhttp.open("GET", hvadam.json, true);
+//    xhttp.send();
+//};
+
+
+
+
+
+
+
+            </script>
+
+        </div>    
+    </body>
+
+</html>
