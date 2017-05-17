@@ -53,7 +53,7 @@ and open the template in the editor.
 
             <script>
 
-                var theRoute = '{"start":"Hogeschool van Amsterdam", "end": "Amsterdam Dam", "mapImageURL" : "http://www.vandervaartenomstreken.nl/Genealogie/Steden/foto\'s%20steden/amsterdam%20kaart.jpg", "imageWidth": 1000, "imageHeight" : 843, "scale" : 4.0, "route": [ [100,100], [837,563], [663,433], [590,438],[589,427], [577,424],[565,417],[432,438], [404,445]]}';
+                var theRoute = '{"start":"Hogeschool van Amsterdam", "end": "Amsterdam Dam", "mapImageURL" : "http://www.vandervaartenomstreken.nl/Genealogie/Steden/foto\'s%20steden/amsterdam%20kaart.jpg", "imageWidth": 1000, "imageHeight" : 843, "scale" : 4.0, "route": [ [851, 579], [837,563], [663,433], [590,438],[589,427], [577,424],[565,417],[432,438], [404,445]]}';
                 var routeObject = JSON.parse(theRoute);
 
                 document.getElementById("startRoute").innerHTML = routeObject.start;
@@ -75,10 +75,10 @@ and open the template in the editor.
 
 
                 function drawRoute() {
-
                     for (var i = 0; i < routeObject.route.length; i++) {
                         longPixel = routeObject.route[i][0];
                         latPixel = routeObject.route[i][1];
+                        ctx.strokeStyle="blue";
                         ctx.lineTo(longPixel, latPixel);
 
                     };
