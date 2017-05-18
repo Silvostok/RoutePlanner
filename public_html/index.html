@@ -41,11 +41,11 @@ and open the template in the editor.
             <div id="routeoutput"></div>
 
             <p>Route vanaf <label id="startRoute"></label> naar <label id="endRoute"></label></p>
-            <p>Afstand: <span id="distand"> XXXX </span> meter</p>
+            <p>Afstand: <span id="distance">  </span> meters</p>
 
 
             <img id="kaart" alt="image" src="" style="width:700px; display: none;"/>
-            <canvas id="myCanvas" width="700" height="535"></canvas>
+            <canvas id="myCanvas" width="700" height="700"></canvas>
 
             <p id="demo"></p>
             <p id="dam">Details of map will be listed here</p>
@@ -58,7 +58,7 @@ and open the template in the editor.
 
                 document.getElementById("startRoute").innerHTML = routeObject.start;
                 document.getElementById("endRoute").innerHTML = routeObject.end;
-                document.getElementById("distand").innerHTML = routeObject.scale;
+                document.getElementById("distance").innerHTML = routeObject.scale;
                 document.getElementById("kaart").src = routeObject.mapImageURL;
 
                 var canvas = document.getElementById("myCanvas");
@@ -79,6 +79,7 @@ and open the template in the editor.
                         longPixel = routeObject.route[i][0];
                         latPixel = routeObject.route[i][1];
                         ctx.strokeStyle="blue";
+                        ctx.lineWidth=3;
                         ctx.lineTo(longPixel, latPixel);
 
                     };
