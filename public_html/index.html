@@ -68,7 +68,7 @@ and open the template in the editor.
                 image.onload = function () {
                     ctx.drawImage(image, 0, 0, 700, 700);
                     ctx.beginPath();
-                    ctx.lineTo(100, 10);
+                    //ctx.lineTo(100, 10);
                     drawRoute();
                     ctx.stroke();
                 };
@@ -80,7 +80,7 @@ and open the template in the editor.
                         latPixel = routeObject.route[i][1];
                         ctx.strokeStyle="blue";
                         ctx.lineWidth=3;
-                        ctx.lineTo(longPixel, latPixel);
+                        ctx.lineTo(longPixel / 1.40, latPixel / 1.20);
 
                     };
 
